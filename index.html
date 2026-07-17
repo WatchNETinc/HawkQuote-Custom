@@ -35,9 +35,7 @@
         <h1 style="color: #2b6cb0; font-weight: 800; margin-bottom: 5px; font-size: 28px; text-transform: uppercase; letter-spacing: 1px; display: inline-block; vertical-align: middle;">
             HAWK Server Calculator
         </h1>
-        <span style="display: inline-block; vertical-align: middle; background: #004b63; color: white; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 6px; margin-left: 15px; letter-spacing: 1px; border: 1px solid #002d3d; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-            v2.0 (HARDWARE EXPANSION)
-        </span>
+        
     </div>
 
     <div style="width: 100%; max-width: 1240px; margin-bottom: 20px; box-sizing: border-box;">
@@ -51,11 +49,13 @@
         <div class="col-left">
             <div class="section-card" style="border-top: 4px solid #004b63;">
     <div class="section-title">1. Camera/Archive Calculator</div>
-                <div class="input-group"><label>Basic Cameras</label><input type="number" id="camQty" placeholder="0" oninput="debouncedCalc()"></div>
-                <div class="input-group"><label>Neural Tracker (Auto)</label><input type="number" id="neuralDisp" disabled style="background-color: #f7fafc; cursor: not-allowed;"></div>
-                <div class="input-group"><label>Facial Recognition</label><input type="number" id="faceCamQty" placeholder="0" oninput="debouncedCalc()"></div>
-                <div class="input-group"><label>LPR Cameras</label><input type="number" id="lprCamQty" placeholder="0" oninput="debouncedCalc()"></div>
-            </div>
+    <div class="input-group"><label>Basic Cameras</label><input type="number" id="camQty" placeholder="0" oninput="debouncedCalc()"></div>
+    
+    <div class="input-group"><label>Neural Tracker</label><input type="number" id="neuralDisp" placeholder="0" oninput="debouncedCalc()"></div>
+    
+    <div class="input-group"><label>Facial Recognition</label><input type="number" id="faceCamQty" placeholder="0" oninput="debouncedCalc()"></div>
+    <div class="input-group"><label>LPR Cameras</label><input type="number" id="lprCamQty" placeholder="0" oninput="debouncedCalc()"></div>
+</div>
             
 			<div class="section-card" style="border-top: 4px solid #004b63;">
             <div class="input-group" style="background: white; padding: 20px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-bottom: 20px;">
@@ -139,29 +139,42 @@
 
         <div class="col-preview">
             <h2 style="margin-top:0;">Quote Breakdown</h2>
-            <table class="summary-table">
-                <tr>
-                    <td rowspan="3" class="row-label" id="prevModel">Select Model</td>
-                    <td id="prevSpec" style="font-size:11px; text-align:center;">Please select a model...</td>
-                    <td class="row-price" style="border-bottom: 1px solid #1a202c;">
-                        <div style="font-size: 10px; color: #718096; text-transform: uppercase;">Hardware Price</div>
-                        <span id="hwPriceDisplay">$0.00</span>
-                    </td>
-                </tr>
-                <tr id="storagePriceRow">
-                    <td style="font-size:11px; color:#4a5568; text-align: center; border-top: 1px solid #1a202c;">Video Storage Hard Drives</td>
-                    <td class="row-price" style="border-top: 1px solid #1a202c; border-bottom: 1px solid #1a202c;">
-                        <div style="font-size: 10px; color: #718096; text-transform: uppercase;">Storage Price</div>
-                        <span id="storagePriceDisplay">$0.00</span>
-                    </td>
-                </tr>
-                <tr style="background-color: #f8fafc;">
-                    <td style="font-size:12px; font-weight: bold; text-align: center; border-top: 1px solid #1a202c;">TOTAL SYSTEM PRICE:</td>
-                    <td class="row-price" style="font-size: 20px; color: #2b6cb0; border-top: 1px solid #1a202c;">
-                        <span id="systemTotalPriceDisplay">$0.00</span>
-                    </td>
-                </tr>
-            </table>
+           <table class="summary-table" style="width: 100%; border: 2px solid #1a202c; border-collapse: collapse; background: #fff; table-layout: fixed;">
+    <tr>
+        <td class="row-label" id="prevModel" rowspan="2" style="width: 25%; font-weight: 900; font-size: 20px; background: #f7fafc; border-bottom: 1px solid #1a202c; text-align: center; vertical-align: middle; border-right: 1px solid #1a202c;">
+            Select Model
+        </td>
+        <td id="prevSpec" style="width: 50%; font-size:11px; text-align:center; padding: 15px; color: #2d3748; line-height: 1.5; border-bottom: 1px solid #1a202c; border-right: 1px solid #1a202c;">
+            Please select a model...
+        </td>
+        <td class="row-price" style="width: 25%; border-bottom: 1px solid #1a202c; padding: 10px; text-align: center; vertical-align: middle;">
+            <div style="font-size: 10px; color: #718096; text-transform: uppercase; font-weight: 700; margin-bottom: 4px;">Hardware Price</div>
+            <span id="hwPriceDisplay">$0.00</span>
+        </td>
+    </tr>
+
+    <tr id="storagePriceRow">
+        <td id="storageRowLabel" style="font-size:11px; color:#4a5568; text-align: center; border-bottom: 1px solid #1a202c; padding: 15px; border-right: 1px solid #1a202c; vertical-align: middle;">
+            Video Storage Hard Drives
+        </td>
+        <td class="row-price" style="border-bottom: 1px solid #1a202c; padding: 10px; text-align: center; vertical-align: middle;">
+            <div style="font-size: 10px; color: #718096; text-transform: uppercase; font-weight: 700; margin-bottom: 4px;">Storage Price</div>
+            <span id="storagePriceDisplay">$0.00</span>
+        </td>
+    </tr>
+
+    <tr style="background-color: #f8fafc;">
+        <td style="border-right: 1px solid #1a202c; border-bottom: none; background: #f7fafc;"></td>
+        
+        <td style="font-size:12px; font-weight: bold; text-align: center; padding: 15px; color: #1a202c; text-transform: uppercase; letter-spacing: 0.5px; border-right: 1px solid #1a202c; border-bottom: none; background: #f8fafc; vertical-align: middle;">
+            TOTAL SYSTEM PRICE:
+        </td>
+        
+        <td class="row-price" style="font-size: 20px; color: #2b6cb0; border-bottom: none; padding: 10px; text-align: center; vertical-align: middle; background: #f8fafc;">
+            <span id="systemTotalPriceDisplay">$0.00</span>
+        </td>
+    </tr>
+</table>
 
             <div id="raidSummaryBox" class="raid-result-box" style="margin-top: 20px; border: 2px solid #38a169; padding: 20px; border-radius: 12px; background: #f0fff4; color: #2f855a;">
                 <div style="font-weight: 800; font-size: 14px;">
@@ -225,7 +238,7 @@
 </div>
 <script>
     const webAppUrl = "https://script.google.com/macros/s/AKfycbzs3Yi0P52GEkqD93BzfZPtc-nBnocZ_kmfXz4B3xjGKqiEcTBiDXjiWc98tYLcuglY/exec";
-    let state = { disks: 0, size: 0, model: "" };
+    let state = { disks: 0, size: 0, model: "", serverQty: 1 };
     let currentRequestId = 0;
     let timer;
 
@@ -237,18 +250,15 @@
 
     function calculateArchive() {
     const basic = parseInt(document.getElementById('camQty').value) || 0;
+    const neural = parseInt(document.getElementById('neuralDisp').value) || 0; // CHANGE: Independent read
     const face = parseInt(document.getElementById('faceCamQty').value) || 0;
     const lpr = parseInt(document.getElementById('lprCamQty').value) || 0;
     
-    // 1. Capture the dropdown element node safely from the workspace view grid
     const raidTypeDropdown = document.getElementById('raidType');
     const raidType = raidTypeDropdown ? raidTypeDropdown.value : "10";
 
-    // LINK SUCCESS: Forces basic cameras to mirror into neural tracking automatically on change
-    document.getElementById('neuralDisp').value = basic;
-
-    // 2. Baseline Check for Zero Inputs
-    if (basic === 0 && face === 0 && lpr === 0) {
+    // Baseline Check for Zero Inputs
+    if (basic === 0 && neural === 0 && face === 0 && lpr === 0) {
         document.getElementById('calcStatus').innerText = "Enter Camera Quantities";
         document.getElementById('calcStatus').style.color = "#a0aec0"; 
         if (document.getElementById('raidSummaryBox')) {
@@ -258,57 +268,39 @@
         return; 
     }
 
-    // 3. Check Selection Preference State
     const includeStorage = document.getElementById('includeStorageSelect').value === "Yes";
 
-    // --- METADATA SAFETY CAP TRIGGER ---
-    const metaGB = (basic + face + lpr) * 37.90;
+    // CHANGE: 1 Neural = 37.20 GB, others = 37.90 GB
+    const metaGB = (neural * 37.20) + (face * 37.90) + (lpr * 37.90);
 
-    if (metaGB > 2000) {
-        // Modal Alert Trigger
-        document.getElementById('errorModalOverlay').style.display = "flex";
-        
-        // Wipe specs labels clean
-        document.getElementById('prevModel').innerText = "";
-        document.getElementById('prevSpec').innerText = "";
-        
-        const storageRowLabel = document.querySelector('.summary-table tr:nth-child(2) td:first-child');
-        if (storageRowLabel) storageRowLabel.innerText = "Video Storage Hard Drives";
-        
-        // Reset Pricing metrics
-        document.getElementById('hwPriceDisplay').innerText = "$0.00";
-        document.getElementById('storagePriceDisplay').innerText = "$0.00";
-        document.getElementById('systemTotalPriceDisplay').innerText = "$0.00";
-        
-        // Reset display fields
-        document.getElementById('diskQtyDisp').value = "";
-        document.getElementById('diskSizeDisp').value = "";
-        document.getElementById('dispArchive').innerText = "0.00";
-        document.getElementById('dispMeta').innerText = (metaGB / 1000).toFixed(2) + " TB";
-        
-        // Reset RAID telemetry counters
-        document.getElementById('summRaidType').innerText = "";
-        document.getElementById('summUsable').innerText = "0.0 TB";
-        document.getElementById('summFault').innerText = "";
-        
-        // Disable actions & flag error state contextual layout properties
-        document.getElementById('licenseBreakdown').style.display = "none";
-        document.querySelector('.main-btn').disabled = true; 
-        document.getElementById('calcStatus').innerText = "Error - Limit Exceeded";
-        document.getElementById('calcStatus').style.color = "#e53e3e";
-        
-        return; // ABSOLUTE STOP: Cuts processing loop before server async execution
+    // REMOVED error modal constraint block to let metadata calculate naturally
+    document.getElementById('calcStatus').style.color = "#a0aec0"; 
+
+    let currentModel = "";
+    state.serverQty = 1; 
+
+    if (basic <= 8) {
+        currentModel = "HAWK8";
+    } else if (basic <= 16) {
+        currentModel = "HAWK16";
+    } else if (basic <= 32) {
+        currentModel = "HAWK32";
+    } else if (basic <= 64) {
+        currentModel = "HAWK64";
+    } else if (basic <= 127) {
+        currentModel = "HAWK64"; 
+        state.serverQty = 2;     
     } else {
-        document.getElementById('calcStatus').style.color = "#a0aec0"; 
+        currentModel = "Custom Build";
     }
 
-    // Model selection logic
-    let currentModel = (basic <= 8) ? "HAWK8" : (basic <= 16) ? "HAWK16" : (basic <= 32) ? "HAWK32" : "HAWK64";
-    state.model = currentModel;
-    document.getElementById('modelDisp').value = currentModel;
+    // Automatically appends the "2 x " prefix to the display if qty is 2
+    state.model = (state.serverQty === 2) ? "2 x HAWK64" : currentModel;
+    document.getElementById('modelDisp').value = state.model;
+    
     autoSelectHardware(currentModel);
 
-    // RAID Math
+    // CHANGE: 1 Basic Camera = 711.92 GB (0.71192 TB)
     const archiveTB = (basic * 711.92) / 1000;
     const availableSizes = [4, 6, 8, 10, 12, 16, 22];
 
@@ -338,18 +330,14 @@
         if (s) { bestQty = q; bestSize = s; break; }
     }
 
-    // 6. Value Extraction Output Hooks (Clean, unified, and error-proofed)
     if (includeStorage) {
         state.disks = bestQty; 
         state.size = bestSize;
-        
         document.getElementById('diskQtyDisp').value = bestQty;
         document.getElementById('diskSizeDisp').value = bestSize;
         document.getElementById('dispArchive').innerText = archiveTB.toFixed(2);
         
         const usableCapValue = getUsable(bestQty, bestSize, raidType);
-        
-        // FIX applied here: Safely reads the text without relying on select options arrays
         let raidLabelText = "RAID 10";
         if (raidTypeDropdown && raidTypeDropdown.options && raidTypeDropdown.selectedIndex !== -1) {
             raidLabelText = raidTypeDropdown.options[raidTypeDropdown.selectedIndex].text;
@@ -365,39 +353,18 @@
             document.getElementById('raidSummaryBox').style.display = "block";
         }
     } else {
-        // Reset storage data properties to pure baseline zeros if excluded
         state.disks = 0;
         state.size = 0;
-        
         document.getElementById('diskQtyDisp').value = "0";
         document.getElementById('diskSizeDisp').value = "0";
         document.getElementById('dispArchive').innerText = "0.00";
-        
         if (document.getElementById('raidSummaryBox')) {
             document.getElementById('raidSummaryBox').style.display = "none";
         }
     }
     
-    // Normal Display Unit String Mapping
     document.getElementById('dispMeta').innerText = metaGB >= 1000 ? (metaGB / 1000).toFixed(2) + " TB" : metaGB.toFixed(2) + " GB";
-
     fetchPrices();
-}
-
-function toggleStorageOption() {
-    const includeStorage = document.getElementById('includeStorageSelect').value === "Yes";
-    const raidSummaryBox = document.getElementById('raidSummaryBox');
-
-    if (!includeStorage) {
-        // Hide the green RAID box framework from view if hard drives are omitted
-        if (raidSummaryBox) raidSummaryBox.style.display = "none";
-    } else {
-        // Unhide it if turned back on
-        if (raidSummaryBox) raidSummaryBox.style.display = "block";
-    }
-    
-    // Trigger your archive function pass to update configurations natively
-    calculateArchive();
 }
 
 function closeErrorModal() {
@@ -477,42 +444,50 @@ function closeErrorModal() {
     }
 
     const basic = parseInt(document.getElementById('camQty').value) || 0;
+    const neural = parseInt(document.getElementById('neuralDisp').value) || 0; // CHANGE: Read manual count
     const face = parseInt(document.getElementById('faceCamQty').value) || 0;
     const lpr = parseInt(document.getElementById('lprCamQty').value) || 0;
 
-    // 1. Get Base Prices & Markup from Google
-    const serverPrice = parseFloat(data.serverBasePrice) || 0;
+   const serverPrice = parseFloat(data.serverBasePrice) || 0;
     const driveUnitPrice = parseFloat(data.driveUnitPrice) || 0;
     const markup = parseFloat(data.markup) || 1.30; 
 
-    // CHECK TOGGLE STATE: See if storage hard drives are included
     const includeStorage = document.getElementById('includeStorageSelect') ? document.getElementById('includeStorageSelect').value === "Yes" : true;
 
-    // 2. Separate Calculations (Handles zero math if drives are excluded)
-    const hwFinal = serverPrice * markup;
+    // Inside renderData(data) pricing metrics:
+    const hwFinal = (serverPrice * markup) * (state.serverQty || 1);
     const storageFinal = includeStorage ? (driveUnitPrice * state.disks) : 0; 
     const systemTotal = hwFinal + storageFinal;
     
-    // 3. Update the Price Table
-    document.getElementById('hwPriceDisplay').innerText = "$" + hwFinal.toLocaleString(undefined, {minimumFractionDigits: 2});
+    // CHANGE: Calculate the base price for ONE single server
+    const singleUnitRaw = serverPrice * markup;
+
+    // CHANGE: Inject both the calculated Grand Total AND the smaller subtitle text line dynamically
+    document.getElementById('hwPriceDisplay').innerHTML = `
+        $${hwFinal.toLocaleString(undefined, {minimumFractionDigits: 2})}
+        <div style="font-size: 11px; color: #718096; font-weight: normal; margin-top: 3px;">
+            ($${singleUnitRaw.toLocaleString(undefined, {minimumFractionDigits: 2})} each)
+        </div>
+    `;
+
     document.getElementById('storagePriceDisplay').innerText = "$" + storageFinal.toLocaleString(undefined, {minimumFractionDigits: 2});
     document.getElementById('systemTotalPriceDisplay').innerText = "$" + systemTotal.toLocaleString(undefined, {minimumFractionDigits: 2});
 
-    // 4. Generate License Table
+    // FIXED: Safely inject system counts (1 or 2) into the red left column box without returning undefined errors
+    if (document.getElementById('serverQtyDispLabel')) {
+        document.getElementById('serverQtyDispLabel').innerText = state.serverQty ? state.serverQty : 1;
+    }
+    // CHANGE: Added dynamic 4-row license definition mapping
     const items = [
-        { name: "IP Camera with Neural AI", part: "NFINT-CAML", price: parseFloat(data.licNeural) || 0, qty: basic },
-        { name: "Facial Recognition", part: "NFINT-FRC1", price: parseFloat(data.licFace) || 0, qty: face },
-        { name: "LPR License", part: "NFINT-LPVR", price: parseFloat(data.licLpr) || 0, qty: lpr }
+        { name: "Camera/Device License", part: "NFINT-CAML", price: parseFloat(data.licNeural) || 300, qty: basic },
+        { name: "AI Features License", part: "NFEXP-CAMAI", price: 130, qty: neural }, // New standalone row entry
+        { name: "Facial Recognition", part: "NFINT-FRC1", price: parseFloat(data.licFace) || 900, qty: face },
+        { name: "LPR License", part: "NFINT-LPVR", price: parseFloat(data.licLpr) || 1600, qty: lpr }
     ];
-	
-    // 5. VISUALLY SHOW/HIDE STORAGE ROW BASED ON SELECTION
+    
     const storagePriceRow = document.getElementById('storagePriceRow');
     if (storagePriceRow) {
-        if (includeStorage) {
-            storagePriceRow.style.display = ""; // Default table row display
-        } else {
-            storagePriceRow.style.display = "none"; // Completely hide the row from the visual space
-        }
+        storagePriceRow.style.display = includeStorage ? "" : "none";
     }
     
     let html = ""; 
@@ -673,6 +648,10 @@ function closeErrorModal() {
     const hwPrice = document.getElementById('hwPriceDisplay') ? document.getElementById('hwPriceDisplay').innerText : "$0.00";
     const storagePrice = includeStorage && document.getElementById('storagePriceDisplay') ? document.getElementById('storagePriceDisplay').innerText : "$0.00";
 
+    // FIXED: Changed reference to match your true HTML ID "storageRowLabel"
+    const drivesLabel = document.getElementById('storageRowLabel') ? document.getElementById('storageRowLabel').innerText : "Video Storage Hard Drives";
+    const combinedSystemPrice = document.getElementById('systemTotalPriceDisplay') ? document.getElementById('systemTotalPriceDisplay').innerText : "$0.00";
+
     // Pull configuration metrics out safely depending on selection state
     const n = includeStorage ? (parseInt(document.getElementById('diskQtyDisp').value) || 0) : 0;
     const s = includeStorage ? (parseFloat(document.getElementById('diskSizeDisp').value) || 0) : 0;
@@ -716,47 +695,61 @@ function closeErrorModal() {
     doc.text(`Quote expiration date: ${formattedExpiry}`, pageWidth / 2, 58, { align: "center" });
     doc.setTextColor(0);
 
-    // 4. MAIN QUOTE TABLE (Dynamically Resizes Coordinates)
+   // --- 4. MAIN QUOTE TABLE (3-COLUMN LAYOUT DISCARDING LEFT BOX) ---
     const tableTop = 65;
-    
-    // Adjust total structural box boundaries depending on hard drive selection
     const tableHeight = includeStorage ? 40 : 20; 
     const midPoint = tableTop + (tableHeight / 2);
 
-    // Draw main frame grid layout lines
+    // Draw main frame bounding box frame
     doc.setDrawColor(0).setLineWidth(0.5).rect(14, tableTop, 182, tableHeight); 
-    doc.line(65, tableTop, 65, tableTop + tableHeight);   
-    doc.line(155, tableTop, 155, tableTop + tableHeight); 
+    
+    // Vertical Column Divider Rules (Clean 3-column setup)
+    doc.line(65, tableTop, 65, tableTop + tableHeight);   // Model Name Line
+    doc.line(155, tableTop, 155, tableTop + tableHeight); // Price Matrix Line
 
-    // Left Grid Section Column: Model Series Tag Name
-    doc.setFontSize(14).setFont("helvetica", "bold");
+    // --- LEFT COLUMN: Model Series (Dynamically shows "2 x HAWK64" if active) ---
+    doc.setFontSize(14).setFont("helvetica", "bold").setTextColor(0);
     doc.text(model, 39.5, midPoint + 2, { align: "center" });
 
     if (includeStorage) {
-        // --- STANDARD LAYOUT DETAILED MATRIX MAP ---
+        // --- HORIZONTAL SECTION DIVIDER ---
         doc.line(65, tableTop + 20, 196, tableTop + 20); 
 
-        // Center Grid Column - Top: Hardware Specs
+        // Center Column - Top: Hardware Specs
         doc.setFontSize(8).setFont("helvetica", "normal");
         const splitSpecs = doc.splitTextToSize(specs, 85); 
         doc.text(splitSpecs, 110, tableTop + 8, { align: "center" }); 
 
-        // Center Grid Column - Bottom: Storage Drive Info
+        // Center Column - Bottom: Storage Drive Info
         doc.text(`Video Storage Hard Drives - (${n}x${s}TB)`, 110, tableTop + 32, { align: "center" });
         
-        // Right Grid Column - Top: Hardware Price
+        // ====================================================================
+        // UPDATED: Light-Gray, Smaller Unit Price Subtitle for the PDF
+        // ====================================================================
         doc.setFontSize(7).setTextColor(100);
-        doc.text("HARDWARE PRICE", 175.5, tableTop + 6, { align: "center" });
+        doc.text("HARDWARE PRICE", 175.5, tableTop + 5, { align: "center" });
+        
+        // Main Total Price
+        const cleanHwPriceString = hwPrice.split('$')[1] ? '$' + hwPrice.split('$')[1].split('\n')[0].trim() : hwPrice;
         doc.setFontSize(11).setFont("helvetica", "bold").setTextColor(0, 75, 99);
-        doc.text(hwPrice, 175.5, tableTop + 14, { align: "center" });
+        doc.text(cleanHwPriceString, 175.5, tableTop + 11, { align: "center" });
 
-        // Right Grid Column - Bottom: Storage Price
+        // Changed to matching slate-gray, non-bold, and slightly smaller font sizing
+        const singleUnitRawPDF = (parseFloat(hwPrice.replace(/[^0-9.-]+/g,"")) || 0) / (state.serverQty || 1);
+        doc.setFontSize(7.5)
+           .setFont("helvetica", "normal")
+           .setTextColor(112, 128, 144); // This handles the soft slate-gray look
+        
+        doc.text(`($${singleUnitRawPDF.toLocaleString(undefined, {minimumFractionDigits: 2})} each)`, 175.5, tableTop + 15.5, { align: "center" });
+        // ====================================================================
+
+        // Right Column - Bottom: Storage Price
         doc.setFontSize(7).setFont("helvetica", "normal").setTextColor(100);
         doc.text("STORAGE PRICE", 175.5, tableTop + 26, { align: "center" });
         doc.setFontSize(11).setFont("helvetica", "bold").setTextColor(0, 75, 99);
         doc.text(storagePrice, 175.5, tableTop + 36, { align: "center" });
     } else {
-        // --- HARDWARE SERVER EXCLUSION LAYOUT (SQUISHED COMPACT DESIGN) ---
+        // --- HARDWARE SERVER EXCLUSION SQUISHED LAYOUT ---
         doc.setFontSize(8).setFont("helvetica", "normal");
         const splitSpecs = doc.splitTextToSize(specs, 85); 
         doc.text(splitSpecs, 110, tableTop + 11, { align: "center" }); 
@@ -767,7 +760,7 @@ function closeErrorModal() {
         doc.text(hwPrice, 175.5, tableTop + 14, { align: "center" });
     }
 
-    // TOTAL SYSTEM PRICE ROW (Dynamically repositions its Y line based on layout changes)
+    // TOTAL SYSTEM PRICE BANNER
     const systemTotalRaw = (parseFloat(hwPrice.replace(/[^0-9.-]+/g,"")) + parseFloat(storagePrice.replace(/[^0-9.-]+/g,"")));
     const systemTotalFormatted = "$" + systemTotalRaw.toLocaleString(undefined, {minimumFractionDigits: 2});
 
@@ -780,18 +773,20 @@ function closeErrorModal() {
     doc.setFontSize(11).setTextColor(0, 75, 99); 
     doc.text(systemTotalFormatted, 175.5, tableTop + tableHeight + 6.5, { align: "center" });
 
-    // Dynamic shift calculation variable pushes all upcoming elements down cleanly
     let currentY = tableTop + tableHeight + 15;
     doc.setTextColor(0);
 
     // 5. SOFTWARE LICENSE TABLE
+    // Inside downloadPDF() find your license table rendering block and swap it:
     const basicQty = parseInt(document.getElementById('camQty').value) || 0;
+    const neuralTrackerQty = parseInt(document.getElementById('neuralDisp').value) || 0; 
     const faceQty = parseInt(document.getElementById('faceCamQty').value) || 0;
     const lprQty = parseInt(document.getElementById('lprCamQty').value) || 0;
 
-    if (basicQty > 0 || faceQty > 0 || lprQty > 0) {
+    if (basicQty > 0 || neuralTrackerQty > 0 || faceQty > 0 || lprQty > 0) {
         let activeRows = 0;
         if (basicQty > 0) activeRows++;
+        if (neuralTrackerQty > 0) activeRows++;
         if (faceQty > 0) activeRows++;
         if (lprQty > 0) activeRows++;
 
@@ -813,30 +808,52 @@ function closeErrorModal() {
 
         let rowY = currentY + 20;
         doc.setFontSize(8).setFont("helvetica", "normal").setTextColor(0);
-        
-        const rows = document.querySelectorAll('#licenseRows tr');
         let licenseSubtotal = 0;
 
-        rows.forEach(row => {
-            const cells = row.querySelectorAll('td');
-            if (cells.length >= 5) {
-                const desc = cells[0].innerText;
-                const part = cells[1].innerText;
-                const unit = cells[2].innerText;
-                const qty = cells[3].innerText;
-                const totalText = cells[4].innerText;
-                
-                licenseSubtotal += parseFloat(totalText.replace(/[^0-9.-]+/g, "")) || 0;
-
-                doc.text(desc, 20, rowY);
-                doc.text(part, 70, rowY);
-                doc.text(unit, 120, rowY, { align: "right" });
-                doc.text(qty, 145, rowY, { align: "center" });
-                doc.setFont("helvetica", "bold").text(totalText, 190, rowY, { align: "right" });
-                doc.setFont("helvetica", "normal");
-                rowY += 8;
-            }
-        });
+        if (basicQty > 0) {
+            const price = basicQty * 300;
+            licenseSubtotal += price;
+            doc.text("Camera/Device License", 20, rowY);
+            doc.text("NFINT-CAML", 70, rowY);
+            doc.text("$300", 120, rowY, { align: "right" });
+            doc.text(basicQty.toString(), 145, rowY, { align: "center" });
+            doc.setFont("helvetica", "bold").text(`$${price.toLocaleString()}`, 190, rowY, { align: "right" });
+            doc.setFont("helvetica", "normal");
+            rowY += 8;
+        }
+        if (neuralTrackerQty > 0) {
+            const price = neuralTrackerQty * 200;
+            licenseSubtotal += price;
+            doc.text("AI Feature License", 20, rowY);
+            doc.text("NFEXP-CAMAI", 70, rowY);
+            doc.text("$130", 120, rowY, { align: "right" });
+            doc.text(neuralTrackerQty.toString(), 145, rowY, { align: "center" });
+            doc.setFont("helvetica", "bold").text(`$${price.toLocaleString()}`, 190, rowY, { align: "right" });
+            doc.setFont("helvetica", "normal");
+            rowY += 8;
+        }
+        if (faceQty > 0) {
+            const price = faceQty * 900;
+            licenseSubtotal += price;
+            doc.text("Facial Recognition", 20, rowY);
+            doc.text("NFINT-FRC1", 70, rowY);
+            doc.text("$900", 120, rowY, { align: "right" });
+            doc.text(faceQty.toString(), 145, rowY, { align: "center" });
+            doc.setFont("helvetica", "bold").text(`$${price.toLocaleString()}`, 190, rowY, { align: "right" });
+            doc.setFont("helvetica", "normal");
+            rowY += 8;
+        }
+        if (lprQty > 0) {
+            const price = lprQty * 1600;
+            licenseSubtotal += price;
+            doc.text("LPR License", 20, rowY);
+            doc.text("NFINT-LPVR", 70, rowY);
+            doc.text("$1,600", 120, rowY, { align: "right" });
+            doc.text(lprQty.toString(), 145, rowY, { align: "center" });
+            doc.setFont("helvetica", "bold").text(`$${price.toLocaleString()}`, 190, rowY, { align: "right" });
+            doc.setFont("helvetica", "normal");
+            rowY += 8;
+        }
         
         doc.setDrawColor(200).setLineDashPattern([1, 1], 0); 
         doc.line(20, rowY - 4, 190, rowY - 4);
@@ -849,36 +866,38 @@ function closeErrorModal() {
         currentY += licenseBoxHeight + 10;
     }
 
-    // 6. RAID Summary Box
+   // ====================================================================
+    // LOCKED ABSOLUTE POSITIONS: No more currentY dependency or overlapping!
+    // ====================================================================
+
+    // 6. RAID Summary Box (Locked at absolute Y = 185)
     doc.setDrawColor(40, 167, 69).setLineWidth(0.5);
-    doc.rect(14, currentY, 182, 40);
-    doc.setTextColor(30, 126, 52).setFontSize(11).setFont("helvetica", "bold").text("RAID CONFIGURATION SUMMARY", 20, currentY + 8);
-    doc.setTextColor(0).setFontSize(10).setFont("helvetica", "normal");
-    doc.text(`Configuration: ${raidTypeLabel} | RAW Capacity: ${rawCap} TB`, 20, currentY + 18);
-    doc.text(`Usable Capacity: ${document.getElementById('summUsable') ? document.getElementById('summUsable').innerText : "0.0 TB"}`, 20, currentY + 26);
-    doc.text(`Fault Tolerance: ${document.getElementById('summFault') ? document.getElementById('summFault').innerText : "0 drive"}`, 20, currentY + 34);
+    doc.rect(14, 185, 182, 32);
+    doc.setTextColor(30, 126, 52).setFontSize(10).setFont("helvetica", "bold").text("RAID CONFIGURATION SUMMARY", 20, 191);
+    doc.setTextColor(0).setFontSize(9).setFont("helvetica", "normal");
+    doc.text(`Configuration: ${raidTypeLabel} | RAW Capacity: ${rawCap} TB`, 20, 199);
+    doc.text(`Usable Capacity: ${document.getElementById('summUsable') ? document.getElementById('summUsable').innerText : "0.0 TB"}`, 20, 206);
+    doc.text(`Fault Tolerance: ${document.getElementById('summFault') ? document.getElementById('summFault').innerText : "0 drive"}`, 20, 213);
 
-    currentY += 50;
-
-    // 7. Archive Calculations Box
-    doc.setFillColor(0, 75, 99).rect(14, currentY, 182, 45, 'F').setTextColor(255);
+    // 7. Archive Calculations Box (Locked at absolute Y = 222)
+    doc.setFillColor(0, 75, 99).rect(14, 222, 182, 36, 'F').setTextColor(255);
     
-    doc.setFontSize(11).setFont("helvetica", "bold").text("Total video archive size", pageWidth / 2, currentY + 12, {align: "center"});
-    doc.setFontSize(10).setFont("helvetica", "normal").text(`${document.getElementById('dispArchive') ? document.getElementById('dispArchive').innerText : "0.00"} TB usable archive size target`, pageWidth / 2, currentY + 20, {align: "center"});
+    doc.setFontSize(10).setFont("helvetica", "bold").text("Total video archive size", pageWidth / 2, 228, {align: "center"});
+    doc.setFontSize(9).setFont("helvetica", "normal").text(`${document.getElementById('dispArchive') ? document.getElementById('dispArchive').innerText : "0.00"} TB usable archive size target`, pageWidth / 2, 234, {align: "center"});
 
     const dispMeta = document.getElementById('dispMeta') ? document.getElementById('dispMeta').innerText : "0.00 GB";
-    doc.setFontSize(11).setFont("helvetica", "bold").text("Dedicated SSD for metadata and system log", pageWidth / 2, currentY + 32, {align: "center"});
-    doc.setFontSize(10).setFont("helvetica", "normal").text(`Calculated sizing: ${dispMeta}`, pageWidth / 2, currentY + 40, {align: "center"});
+    doc.setFontSize(10).setFont("helvetica", "bold").text("Dedicated SSD for metadata and system log", pageWidth / 2, 244, {align: "center"});
+    doc.setFontSize(9).setFont("helvetica", "normal").text(`Calculated sizing: ${dispMeta}`, pageWidth / 2, 250, {align: "center"});
 
-    // 8. Footer Info
+    // 8. Footer Info & Disclaimer (Locked safely at the page floor)
     doc.setTextColor(0, 75, 99).setFontSize(8).setFont("helvetica", "bold");
-    doc.text("351 Ferrier St Unit 5 • Markham, ON • L3R 5Z2", pageWidth / 2, 278, { align: "center" });
-    doc.text("PHONE: 416-410-6865 TOLL FREE: 1-866-331-3341", pageWidth / 2, 283, { align: "center" });
-    doc.setFontSize(7).setFont("helvetica", "normal").text("www.watchnetinc.com / info@watchnetinc.com", pageWidth / 2, 287, { align: "center" });
+    doc.text("351 Ferrier St Unit 5 • Markham, ON • L3R 5Z2", pageWidth / 2, 266, { align: "center" });
+    doc.text("PHONE: 416-410-6865 TOLL FREE: 1-866-331-3341", pageWidth / 2, 271, { align: "center" });
+    doc.setFontSize(7).setFont("helvetica", "normal").text("www.watchnetinc.com / info@watchnetinc.com", pageWidth / 2, 275, { align: "center" });
 
-   doc.setTextColor(120).setFontSize(7).setFont("helvetica", "italic");
+    doc.setTextColor(120).setFontSize(7).setFont("helvetica", "italic");
     const disclaimer = "ESTIMATE ONLY: This document is an automated hardware configuration estimate and does not constitute a final binding quote. This quotation is valid for 7 days from the date issued. Pricing is subject to change after expiration due to market fluctuations. All configurations, pricing, and component availability must be verified directly with a WatchNet sales representative prior to order placement.";
-    doc.text(doc.splitTextToSize(disclaimer, 180), 14, 291);
+    doc.text(doc.splitTextToSize(disclaimer, 180), 14, 281);
 
     doc.save(`${client}_${poNumber}_Hawk_Quote.pdf`);
 }
