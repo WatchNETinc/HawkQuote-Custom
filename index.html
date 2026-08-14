@@ -63,7 +63,7 @@
 			</div>
             
             <div class="section-card" style="border-top: 4px solid #004b63;">
-                <div class="section-title">2. RAID Configuration (Auto)</div>
+                <div class="section-title">2. RAID Configuration</div>
                 <div class="input-group">
     <label>Number of Disks</label>
     <select id="diskQtyDisp" onchange="onCustomDriveChange()">
@@ -294,6 +294,42 @@ function onCustomDriveChange() {
     calculateArchive();
 }
 
+function toggleStandbyFields(isDisabled) {
+    const fieldsToToggle = [
+        'includeStorageSelect',
+        'diskQtyDisp',
+        'diskSizeDisp',
+        'raidType',
+        'clientName',
+        'poNumber',
+        'modelDisp',
+        'cpuSelect',
+        'ramSelect',
+        'raidCardSelect',
+        'caseSelect',
+        'baySelect',
+        'gpuSelect'
+    ];
+
+    fieldsToToggle.forEach(id => {
+        const elem = document.getElementById(id);
+        if (elem) {
+            elem.disabled = isDisabled;
+            elem.style.backgroundColor = isDisabled ? "#edf2f7" : "#f8fafc";
+            elem.style.cursor = isDisabled ? "not-allowed" : "default";
+            
+            // Remove text when entering Standby Mode
+            if (isDisabled) {
+                if (elem.tagName === "SELECT") {
+                    elem.selectedIndex = -1; // Unselects dropdown options (displays blank)
+                } else if (elem.tagName === "INPUT") {
+                    elem.value = ""; // Clears text input fields
+                }
+            }
+        }
+    });
+}
+
     function debouncedCalc() {
         document.getElementById('calcStatus').innerText = "Waiting...";
         clearTimeout(timer);
@@ -334,9 +370,13 @@ function onCustomDriveChange() {
         if (document.getElementById('raidSummaryBox')) {
             document.getElementById('raidSummaryBox').style.display = "none"; 
         }
+        toggleStandbyFields(true); // 🔒 Disable all fields on Standby
         resetUI(); 
         return; 
     }
+
+    // 🔓 Unlock all fields when camera quantities are entered (> 0)
+    toggleStandbyFields(false);
 
     const includeStorage = document.getElementById('includeStorageSelect').value === "Yes";
     const hasRaidController = document.getElementById('raidCardSelect') ? document.getElementById('raidCardSelect').value !== "None" : true;
@@ -848,12 +888,15 @@ function closeErrorModal() {
     document.getElementById('hwPriceDisplay').innerText = "$0.00";
     document.getElementById('storagePriceDisplay').innerText = "$0.00";
     document.getElementById('systemTotalPriceDisplay').innerText = "$0.00";
-    document.getElementById('licenseRows').innerHTML = "";
-    document.getElementById('licenseBreakdown').style.display = "none";
     
-    document.getElementById('summRaidType').innerText = "RAID 10";
-    document.getElementById('summUsable').innerText = "0.0 TB";
-    document.getElementById('summFault').innerText = "0 drive";
+    const licenseRows = document.getElementById('licenseRows');
+    if (licenseRows) licenseRows.innerHTML = "";
+    
+    const licenseBreakdown = document.getElementById('licenseBreakdown');
+    if (licenseBreakdown) licenseBreakdown.style.display = "none";
+    
+    document.getElementById('dispArchive').innerText = "0.00";
+    document.getElementById('dispMeta').innerText = "0.00 GB";
     
     document.getElementById('calcStatus').style.color = "#a0aec0"; 
     document.getElementById('calcStatus').innerText = "Standby";
@@ -1158,6 +1201,11 @@ function closeErrorModal() {
 
     doc.save(`${client}_${poNumber}_Hawk_Quote.pdf`);
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    toggleStandbyFields(true);
+    calculateArchive();
+});
 </script>
 </body>
 </html>
