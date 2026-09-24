@@ -480,7 +480,7 @@ function resetInputError(elem) {
     const diskQtyElem = document.getElementById('diskQtyDisp');
     const diskSizeElem = document.getElementById('diskSizeDisp');
 
-    if (includeStorage && hasRaidController) {
+    if (includeStorage) {
         // Auto-recommend if editing camera numbers or fields are currently empty
         if (isEditingCameras || !diskQtyElem.value || !diskSizeElem.value) {
             state.disks = bestQty;
@@ -538,7 +538,7 @@ function resetInputError(elem) {
         }
         
         if (raidBox) {
-            raidBox.style.display = "block";
+            raidBox.style.display = hasRaidController ? "block" : "none";
         }
     } else {
         state.disks = includeStorage ? bestQty : 0;
