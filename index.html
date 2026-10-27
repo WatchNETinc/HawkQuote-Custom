@@ -193,13 +193,18 @@
     </tr>
 
     <tr style="background-color: #f8fafc;">
-        <!-- ADDED: id="totalSpacerCell" so we can expand it to span across cleanly -->
+        <!-- Left spacer cell -->
         <td id="totalSpacerCell" style="border-right: 1px solid #1a202c; border-bottom: none; background: #f7fafc;"></td>
         
-        <td style="font-size:12px; font-weight: bold; text-align: center; padding: 15px; color: #1a202c; text-transform: uppercase; letter-spacing: 0.5px; border-right: 1px solid #1a202c; border-bottom: none; background: #f8fafc; vertical-align: middle;">
-            TOTAL SYSTEM PRICE:
+        <!-- Middle cell: Label + Disclaimer -->
+        <td style="font-size: 12px; font-weight: bold; text-align: center; padding: 12px 10px; color: #1a202c; text-transform: uppercase; letter-spacing: 0.5px; border-right: 1px solid #1a202c; border-bottom: none; background: #f8fafc; vertical-align: middle;">
+            <div>TOTAL SYSTEM PRICE:</div>
+            <div style="font-size: 10px; font-weight: 500; font-style: italic; color: #718096; text-transform: none; margin-top: 3px; letter-spacing: 0;">
+                * Software licenses not included
+            </div>
         </td>
         
+        <!-- Right cell: Total price -->
         <td class="row-price" style="font-size: 20px; color: #2b6cb0; border-bottom: none; padding: 10px; text-align: center; vertical-align: middle; background: #f8fafc;">
             <span id="systemTotalPriceDisplay">$0.00</span>
         </td>
@@ -1118,18 +1123,24 @@ function closeErrorModal() {
         doc.text(hwPrice, 175.5, tableTop + 14, { align: "center" });
     }
 
-    // TOTAL SYSTEM PRICE BANNER
+// TOTAL SYSTEM PRICE BANNER (Increased height to 12 for clean dual-line text)
     const systemTotalRaw = (parseFloat(hwPrice.replace(/[^0-9.-]+/g,"")) + parseFloat(storagePrice.replace(/[^0-9.-]+/g,"")));
     const systemTotalFormatted = "$" + systemTotalRaw.toLocaleString(undefined, {minimumFractionDigits: 2});
 
     doc.setDrawColor(0).setFillColor(245, 247, 250); 
-    doc.rect(65, tableTop + tableHeight, 131, 10, 'FD'); 
+    doc.rect(65, tableTop + tableHeight, 131, 12, 'FD'); 
 
-    doc.setFontSize(10).setFont("helvetica", "bold").setTextColor(0);
-    doc.text("TOTAL SYSTEM PRICE:", 110, tableTop + tableHeight + 6.5, { align: "center" });
+    // Main Label
+    doc.setFontSize(9.5).setFont("helvetica", "bold").setTextColor(0);
+    doc.text("TOTAL SYSTEM PRICE:", 110, tableTop + tableHeight + 5, { align: "center" });
 
-    doc.setFontSize(11).setTextColor(0, 75, 99); 
-    doc.text(systemTotalFormatted, 175.5, tableTop + tableHeight + 6.5, { align: "center" });
+    // Subtitle Note (Professional, subtle italic)
+    doc.setFontSize(7).setFont("helvetica", "italic").setTextColor(112, 128, 144);
+    doc.text("* Software licenses not included", 110, tableTop + tableHeight + 9.5, { align: "center" });
+
+    // Price Value
+    doc.setFontSize(11).setFont("helvetica", "bold").setTextColor(0, 75, 99); 
+    doc.text(systemTotalFormatted, 175.5, tableTop + tableHeight + 7.5, { align: "center" });
 
     let currentY = tableTop + tableHeight + 15;
     doc.setTextColor(0);
@@ -1192,9 +1203,8 @@ function closeErrorModal() {
         }
         
         // --- Dynamic info note printed perfectly at the foot of the box ---
-        doc.setFont("helvetica", "italic").setFontSize(7.5).setTextColor(112, 128, 144);
-        doc.text("* For accurate pricing please contact WatchNet Sales Support", 20, rowY);
-
+doc.setFont("helvetica", "italic").setFontSize(7.5).setTextColor(112, 128, 144);
+doc.text("* For accurate pricing please contact WatchNet Sales Support", 20, rowY);
         currentY += licenseBoxHeight + 10;
     }
 
