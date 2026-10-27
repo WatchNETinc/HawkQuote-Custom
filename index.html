@@ -753,9 +753,9 @@ function closeErrorModal() {
 
     // Define the structural dataset array inside this scope cleanly
     const items = [
-        { name: "Camera/Device License", part: "NFEXP-CAML", price: parseFloat(data.licNeural) || 300, qty: basic },
-        { name: "AI Features License", part: "NFEXP-CAMAI", price: 130, qty: neural }, 
-        { name: "Facial Recognition", part: "NFEXP-FRC1", price: parseFloat(data.licFace) || 900, qty: face },
+        { name: "Camera/Device License", part: "NFEX-CAML", price: parseFloat(data.licNeural) || 300, qty: basic },
+        { name: "AI Features License", part: "NFEX-CAMAI", price: 130, qty: neural }, 
+        { name: "Facial Recognition", part: "NFEX-FRC1", price: parseFloat(data.licFace) || 900, qty: face },
         { name: "LPR License", part: "NFEXP-LPVR", price: parseFloat(data.licLpr) || 1600, qty: lpr }
     ];
 
@@ -1179,19 +1179,19 @@ function closeErrorModal() {
 
         if (basicQty > 0) {
             doc.text("Camera/Device License", 20, rowY);
-            doc.text("NFEXP-CAML", 100, rowY);
+            doc.text("NFEX-CAML", 100, rowY);
             doc.text(basicQty.toString(), 180, rowY, { align: "center" });
             rowY += 8;
         }
         if (neuralTrackerQty > 0) {
             doc.text("AI Feature License", 20, rowY);
-            doc.text("NFEXP-CAMAI", 100, rowY);
+            doc.text("NFEX-CAMAI", 100, rowY);
             doc.text(neuralTrackerQty.toString(), 180, rowY, { align: "center" });
             rowY += 8;
         }
         if (faceQty > 0) {
             doc.text("Facial Recognition", 20, rowY);
-            doc.text("NFEXP-FRC1", 100, rowY);
+            doc.text("NFEX-FRC1", 100, rowY);
             doc.text(faceQty.toString(), 180, rowY, { align: "center" });
             rowY += 8;
         }
